@@ -2,8 +2,17 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { auth } from "../../firebaseConnection"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import { 
+  hasValidDomain,
+  hasUppercase,
+  hasSpecialCharacter,
+  hasNumber
+} from "../../utils/validationUtils"
 
-function Login() {
+import eye from "../../assets/eye-fill.svg"
+import eyeSlash from "../../assets/eye-slash-fill.svg"
+
+function Register() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -12,6 +21,7 @@ function Login() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [emailInputStarted, setEmailInputStarted] = useState(false);
   const [passwordInputStarted, setPasswordInputStarted] = useState(false);
+  const [showingPassword, setShowingPassword] = useState(false)
 
   const navigate = useNavigate()
   
@@ -43,11 +53,15 @@ function Login() {
       },
       {
         condition: !email.split("@").pop().trim(),
-        errorMessage: "Digite algo depois do @"
+        errorMessage: "Digite algo depois do @!"
       },
       {
         condition: !email.split("@")[0]?.trim(),
-        errorMessage: "Digite algo antes do @"
+        errorMessage: "Digite algo antes do @!"
+      },
+      {
+        condition: !hasValidDomain(email),
+        errorMessage: "Email inválido!"
       }
     ];
 
@@ -72,25 +86,21 @@ function Login() {
 
     const validationConditions = [
       {
-        condition: !(password.length > 6),
-        errorMessage: "Seu senha tem que ter mais de seis digitos."
+        condition: !(hasUppercase(password)),
+        errorMessage: "Sua senha precisa ter pelo menos uma letra maiúscula!"
       },
       {
-        condition: !password,
-        errorMessage: "Seu endereço de password está vazio!"
+        condition: !(hasSpecialCharacter(password)),
+        errorMessage: "Sua senha precisa ter pelo menos um caractere especial!"
       },
       {
-        condition: !password.includes("@"),
-        errorMessage: "Inclua um @ no seu endereço de password!"
+        condition: !hasNumber(password),
+        errorMessage: "Sua senha precisa ter pelo menos um número!"
       },
       {
-        condition: !email.split("@").pop().trim(),
-        errorMessage: "Digite algo depois do @"
+        condition: !(password.length >= 6),
+        errorMessage: "Sua senha precisa ter pelo menos 6 caracteres!"
       },
-      {
-        condition: !password.split("@")[0]?.trim(),
-        errorMessage: "Digite algo antes do @"
-      }
     ];
 
     validationConditions.forEach(condition => {
@@ -134,13 +144,12 @@ function Login() {
               return
           })
           .catch(error => {
-              console.log("erro ao criar", error.code)
               switch(error.code) {
                 case "auth/weak-password":
-                  setPasswordError("Senha fraca")
+                  setPasswordError("Senha fraca!")
                   break
                 case "auth/email-already-in-use":
-                  console.log("email já esta em uso")
+                  setEmailError("Este email já está em uso!")
                   break
                 case "auth/invalid-email":
                   setEmailError("Email inválido!")
@@ -159,7 +168,7 @@ function Login() {
               </header>
               <form
                 method="post"
-                className="mb-0"
+                className="form-register mb-0"
                 onSubmit={handleSubmit}
                 noValidate>
                 <div className="d-flex flex-column mb-4">
@@ -167,20 +176,23 @@ function Login() {
                     Email
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     placeholder="Digite seu email"
                     value={email}
                     onChange={e => {
-                        setEmail(e.target.value)
-                        if(!emailInputStarted) {
-                          setEmailInputStarted(true)
-                        }
+                      setEmail(e.target.value);
+                      if (!emailInputStarted) {
+                        setEmailInputStarted(true);
                       }
-                    }
+                    }}
                     aria-invalid={
-                      emailInputStarted || formSubmitted ? (emailError ? "true" : "false") : ""
+                      emailInputStarted || formSubmitted
+                        ? emailError
+                          ? "true"
+                          : "false"
+                        : ""
                     }
                   />
                   <div
@@ -192,26 +204,42 @@ function Login() {
                     </span>
                   </div>
 
-                  <label className="my-2" htmlFor="password">
-                    Senha
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Digite sua senha"
-                    value={password}
-                    onChange={e => {
-                        setPassword(e.target.value)
-                        if(!passwordInputStarted) {
-                          setPasswordInputStarted(true)
+                  <div>
+                    <label className="my-2" htmlFor="password">
+                      Senha
+                    </label>
+                    <input
+                      type={showingPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      placeholder="Digite sua senha"
+                      value={password}
+                      onChange={e => {
+                        setPassword(e.target.value);
+                        if (!passwordInputStarted) {
+                          setPasswordInputStarted(true);
                         }
+                      }}
+                      aria-invalid={
+                        passwordInputStarted || formSubmitted
+                          ? passwordError
+                            ? "true"
+                            : "false"
+                          : ""
                       }
-                    }
-                    aria-invalid={
-                      passwordInputStarted || formSubmitted ? (passwordError ? "true" : "false") : ""
-                    }
-                  />
+                    />
+                    <i
+                      className="passwordToggle"
+                      onClick={() => {
+                        setShowingPassword(prevState => !prevState);
+                      }}>
+                      {showingPassword ? (
+                        <img src={eyeSlash} />
+                      ) : (
+                        <img src={eye} />
+                      )}
+                    </i>
+                  </div>
                   <div
                     className={`mt-1 mb-2 ${
                       passwordError ? "d-initial" : "d-none"
@@ -221,7 +249,6 @@ function Login() {
                     </span>
                   </div>
                 </div>
-
                 <button type="submit mt-0">Registrar</button>
               </form>
             </article>
@@ -232,4 +259,4 @@ function Login() {
 
 }
 
-export default Login
+export default Register

@@ -7,3 +7,16 @@
 .text-pico-danger {
   color: rgb(229, 57, 53);
 }
+
+form i.passwordToggle {
+  margin-left: -80px;
+  cursor: pointer;
+}
+
+form i.passwordToggle img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+

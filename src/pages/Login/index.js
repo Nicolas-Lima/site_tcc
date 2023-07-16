@@ -6,6 +6,7 @@ function Login() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [credentialsError, setCredentialError] = useState("")
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -15,7 +16,7 @@ function Login() {
                 console.log(value.user)
             })
             .catch(error => {
-                console.log(error)
+                setCredentialError(error.code)
             })
     }
     
@@ -27,7 +28,7 @@ function Login() {
                       <header className="text-center mb-4 d-flex justify-content-center">
                         <strong className="me-3">Logar</strong>
                       </header>
-                      <form method="post" className="mb-0" onSubmit={ handleSubmit } >
+                      <form method="post" className="mb-0" noValidate onSubmit={ handleSubmit } >
                         <div className="d-flex flex-column mb-4">
                           <label className="mb-2" htmlFor="email">Email</label>
                           <input
@@ -52,7 +53,12 @@ function Login() {
                           />
                         </div>
 
+                        <div className="mb-5">
+                          {credentialsError}
+                        </div>
+
                         <button type="submit">Logar</button>
+
                       </form>
                     </article>
                 </div>
