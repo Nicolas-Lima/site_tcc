@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+
+    <style>
+        * {
+            color: white !important;
+        }
+    </style>
+    <div style="display: flex; justify-content: center; margin-top: 55px">
+      <canvas id="myChart" style="max-width: 890px; max-height: 525px"></canvas>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 55px">
+      <canvas
+        id="myChart2"
+        style="max-width: 890px; max-height: 525px"
+      ></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById("myChart");
+      const ctx2 = document.getElementById("myChart2");
+
+      const labels = [
+        "Jan 5",
+        "Jan 12",
+        "Jan 20",
+        "Jan 29",
+        "Feb 3",
+        "Feb 10",
+        "Feb 17",
+        "Feb 24",
+        "Mar 2",
+        "Mar 9",
+        "Mar 16",
+        "Mar 23",
+        "Apr 1",
+        "Apr 8",
+        "Apr 15",
+        "Apr 22",
+        "May 6",
+        "May 13",
+        "May 20",
+        "May 27",
+        "Jun 3",
+        "Jun 10",
+        "Jun 17",
+        "Jun 24",
+        "Jul 1",
+        "Jul 8",
+        "Jul 15",
+        "Jul 22",
+        "Aug 5",
+        "Aug 12",
+        "Aug 19",
+        "Aug 26",
+        "Sep 2",
+        "Sep 9",
+        "Sep 16",
+        "Sep 23",
+        "Oct 7",
+        "Oct 14",
+        "Oct 21",
+        "Oct 28",
+        "Nov 4",
+        "Nov 11",
+        "Nov 18",
+        "Nov 25",
+        "Dec 2",
+        "Dec 9",
+        "Dec 16",
+        "Dec 23",
+      ];
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+            axis: "y",
+            label: "Temperatura",
+            data: [
+              25.4, 100, 27.8, 29.5, 30.3, 31.1, 32.8, 34.2, 33.1, 30.8, 27.7,
+              25.1, 23.9, 22.7, 21.5, 20.2, 22.0, 24.2, 26.5, 28.7, 29.8, 30.5,
+              31.2, 32.6, 34.1, 34.8, 35.5, 36.2, 37.0, 37.8, 37.3, 35.9, 33.5,
+              31.2, 29.0, 27.3, 25.7, 23.9, 22.3, 20.5, 19.7, 19.0, 18.4, 17.8,
+              17.2, 16.6, 16.0, 15.4,
+            ],
+            fill: true,
+
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "line",
+        data: data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      new Chart(ctx, config);
+
+      // Soil humidity
+
+      const data2 = {
+        labels: labels,
+        datasets: [
+          {
+            axis: "y",
+            label: "Humidade",
+            data: [
+              32, 34, 37, 42, 39, 36, 34, 31, 29, 27, 25, 26, 28, 30, 32, 34,
+              36, 38, 40, 42, 43, 41, 39, 37, 35, 33, 31, 30, 29, 28, 27, 26,
+              25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 16, 15, 14, 14, 13, 12,
+              12, 11, 11,
+            ],
+            fill: true,
+
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config2 = {
+        type: "line",
+        data: data2,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      new Chart(ctx2, config2);
+    </script>
+  </body>
+</html>

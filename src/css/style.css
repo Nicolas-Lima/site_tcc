@@ -1,0 +1,9 @@
+.currentWeatherData {
+  position: relative;
+  top: -2px;
+  box-shadow: 0 10px 10px rgb(177, 170, 170);;
+}
+
+.text-pico-danger {
+  color: rgb(229, 57, 53);
+}
