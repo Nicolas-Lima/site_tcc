@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { db, auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { FormContext } from "../../contexts/formContext";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [credentialsError, setCredentialError] = useState("");
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    credentialsError,
+    setCredentialsError,
+  } = useContext(FormContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -15,7 +21,7 @@ function Login() {
         console.log(value.user);
       })
       .catch(error => {
-        setCredentialError(error.code);
+        setCredentialsError(error.code);
       });
   };
 

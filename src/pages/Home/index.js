@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import DrawerAndNav from "../../components/DrawerAndNav";
 import { fetchWeatherData } from "../../services/weatherApi";
 
+// alert("UseContext")
+// alert("<Private> </Private>")
+// alert("Dividir em componentes")
+
 function Home() {
   const [weatherData, setWeatherData] = useState({});
 

@@ -12,6 +12,7 @@ function FormProvider({ children }) {
   const [emailInputStarted, setEmailInputStarted] = useState(false);
   const [passwordInputStarted, setPasswordInputStarted] = useState(false);
   const [showingPassword, setShowingPassword] = useState(false);
+  const [credentialsError, setCredentialsError] = useState("");
 
   const contextValue = {
     email,
@@ -30,6 +31,8 @@ function FormProvider({ children }) {
     setPasswordInputStarted,
     showingPassword,
     setShowingPassword,
+    credentialsError,
+    setCredentialsError
   };
 
   return (
