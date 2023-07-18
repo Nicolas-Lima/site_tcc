@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
+
 function Nav(props) {
   return (
-    <nav className="px-4 mt-2">
+    <nav className="px-4 mt-2 d-flex justify-content-around">
       <ul>
         <li>
           <button
@@ -20,12 +22,16 @@ function Nav(props) {
             </svg>
           </button>
         </li>
-        <li>Register</li>
-        <li>Login</li>
-        <li>ola</li>
 
-        <li>ola</li>
-        <li>ola</li>
+      </ul>
+
+      <ul>
+      <li>
+          <Link to="/register">Registrar-se</Link>
+        </li>
+        <li>
+          <Link to="/login">Logar</Link>
+        </li>
       </ul>
     </nav>
   );
