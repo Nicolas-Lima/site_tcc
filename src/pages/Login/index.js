@@ -1,30 +1,6 @@
-import { useState, useEffect, useContext } from "react";
-import { db, auth } from "../../firebaseConnection";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { FormContext } from "../../contexts/formContext";
+import LoginForm from "../../components/LoginForm";
 
 function Login() {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    credentialsError,
-    setCredentialsError,
-  } = useContext(FormContext);
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(value => {
-        console.log(value.user);
-      })
-      .catch(error => {
-        setCredentialsError(error.code);
-      });
-  };
-
   return (
     <div className="container py-0">
       <div className="row justify-content-center gx-sm-5 mb-4 mt-5">
@@ -33,43 +9,7 @@ function Login() {
             <header className="text-center mb-4 d-flex justify-content-center">
               <strong className="me-3">Logar</strong>
             </header>
-            <form
-              method="post"
-              className="mb-0"
-              noValidate
-              onSubmit={handleSubmit}>
-              <div className="d-flex flex-column mb-4">
-                <label className="mb-2" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Digite seu email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  required
-                />
-
-                <label className="my-2" htmlFor="password">
-                  Senha
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Digite sua senha"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="mb-5">{credentialsError}</div>
-
-              <button type="submit">Logar</button>
-            </form>
+            <LoginForm />
           </article>
         </div>
       </div>
