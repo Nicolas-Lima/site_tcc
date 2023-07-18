@@ -9,7 +9,7 @@
 }
 
 form i.passwordToggle {
-  margin-left: -80px;
+  margin-left: -45px;
   cursor: pointer;
 }
 
@@ -20,3 +20,6 @@ form i.passwordToggle img {
   cursor: pointer;
 }
 
+form input {
+  background-image: unset !important;
+}
