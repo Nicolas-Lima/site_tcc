@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormContext } from "../../contexts/formContext";
 
@@ -6,7 +6,8 @@ import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   validateEmailWithMessage,
-  validatePasswordWithMessage
+  validatePasswordWithMessage,
+  getCreateAccountErrorMessage
 } from "../../utils/validationUtils";
 
 import RegisterFormFields from "../../components/RegisterFormFields";
@@ -16,20 +17,12 @@ function RegisterForm() {
 
   const {
     email,
-    setEmail,
-    emailError,
     setEmailError,
     emailInputStarted,
-    setEmailInputStarted,
-    formSubmitted,
     setFormSubmitted,
     password,
-    setPassword,
-    passwordError,
     setPasswordError,
     passwordInputStarted,
-    setPasswordInputStarted,
-    showingPassword,
   } = useContext(FormContext);
 
   useEffect(() => {
@@ -83,17 +76,9 @@ function RegisterForm() {
         return;
       })
       .catch(error => {
-        switch (error.code) {
-          case "auth/weak-password":
-            setPasswordError("Senha fraca!");
-            break;
-          case "auth/email-already-in-use":
-            setEmailError("Este email já está em uso!");
-            break;
-          case "auth/invalid-email":
-            setEmailError("Email inválido!");
-            break;
-        }
+        const errorMessage = getCreateAccountErrorMessage(error.code)
+        setEmailError(errorMessage.email)
+        setPasswordError(errorMessage.password);
       });
   };
 

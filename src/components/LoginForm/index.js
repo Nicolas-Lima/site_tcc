@@ -5,17 +5,12 @@ import { db, auth } from "../../firebaseConnection";
 import { FormContext } from "../../contexts/formContext";
 
 import PasswordToggle from "../PasswordToggle";
+import { getAuthErrorMessage } from "../../utils/validationUtils";
 
 function LoginForm() {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    credentialsError,
-    setCredentialsError,
-    showingPassword,
-  } = useContext(FormContext);
+  const [credentialsError, setCredentialsError] = useState("");
+  const { email, setEmail, password, setPassword, showingPassword } =
+    useContext(FormContext);
 
   const navigate = useNavigate();
 
@@ -28,13 +23,18 @@ function LoginForm() {
         //navigate("/")
       })
       .catch(error => {
-        setCredentialsError(error.code);
+        const credentialsError = getAuthErrorMessage(error.code);
+        setCredentialsError(credentialsError);
       });
   };
 
   return (
-    <form method="post" className="mb-0" noValidate onSubmit={handleSubmit}>
-      <div className="d-flex flex-column mb-4">
+    <form
+      method="post"
+      className="mb-0"
+      noValidate
+      onSubmit={handleSubmit}>
+      <div className="d-flex flex-column mb-2">
         <label className="mb-2" htmlFor="email">
           Email
         </label>
@@ -65,7 +65,7 @@ function LoginForm() {
         </div>
       </div>
 
-      <div className="mb-4">{credentialsError}</div>
+      <div className="mt-1 mb-4 text-pico-danger">{credentialsError}</div>
 
       <button type="submit">Logar</button>
     </form>

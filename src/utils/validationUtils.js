@@ -75,11 +75,13 @@ function validatePasswordWithMessage(password) {
   const validationConditions = [
     {
       condition: !hasUppercase(password),
-      errorMessage: "Sua senha precisa ter pelo menos uma letra maiúscula!",
+      errorMessage:
+        "Sua senha precisa ter pelo menos uma letra maiúscula!",
     },
     {
       condition: !hasSpecialCharacter(password),
-      errorMessage: "Sua senha precisa ter pelo menos um caractere especial!",
+      errorMessage:
+        "Sua senha precisa ter pelo menos um caractere especial!",
     },
     {
       condition: !hasNumber(password),
@@ -104,6 +106,55 @@ function validatePasswordWithMessage(password) {
   };
 }
 
+function getAuthErrorMessage(errorCode) {
+  let errorMessage = "";
+
+  switch (errorCode) {
+    case "auth/invalid-email":
+      errorMessage =
+        "Endereço de email inválido. Por favor, verifique o email digitado.";
+      break;
+    case "auth/user-not-found":
+      errorMessage =
+        "Usuário não encontrado. Verifique o email e a senha e tente novamente.";
+      break;
+    case "auth/missing-password":
+      errorMessage =
+        "Senha obrigatória. Por favor, certifique-se de digitar sua senha antes de prosseguir.";
+      break;
+    default:
+      errorMessage =
+        "Erro ao efetuar login. Por favor, tente novamente mais tarde.";
+  }
+
+  return errorMessage;
+}
+
+function getCreateAccountErrorMessage(errorCode) {
+  let errorMessage = {
+    password: "",
+    email: "",
+    default: "",
+  };
+
+  switch (errorCode) {
+    case "auth/weak-password":
+      errorMessage.password = "Senha fraca!";
+      break;
+    case "auth/email-already-in-use":
+      errorMessage.email = "Este email já está em uso!";
+      break;
+    case "auth/invalid-email":
+      errorMessage.email = "Email inválido!";
+      break;
+    default:
+      errorMessage.default =
+        "Erro ao efetuar cadastro. Por favor, tente novamente mais tarde.";
+  }
+
+  return errorMessage;
+}
+
 export {
   hasValidDomain,
   hasUppercase,
@@ -111,4 +162,6 @@ export {
   hasNumber,
   validateEmailWithMessage,
   validatePasswordWithMessage,
+  getAuthErrorMessage,
+  getCreateAccountErrorMessage,
 };

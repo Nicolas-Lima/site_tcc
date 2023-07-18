@@ -1,9 +1,8 @@
-import { useState, createContext } from "react"
+import { useState, createContext } from "react";
 
-const FormContext = createContext({})
+const FormContext = createContext({});
 
 function FormProvider({ children }) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -12,7 +11,6 @@ function FormProvider({ children }) {
   const [emailInputStarted, setEmailInputStarted] = useState(false);
   const [passwordInputStarted, setPasswordInputStarted] = useState(false);
   const [showingPassword, setShowingPassword] = useState(false);
-  const [credentialsError, setCredentialsError] = useState("");
 
   const contextValue = {
     email,
@@ -31,16 +29,14 @@ function FormProvider({ children }) {
     setPasswordInputStarted,
     showingPassword,
     setShowingPassword,
-    credentialsError,
-    setCredentialsError
   };
 
   return (
-    <FormContext.Provider value={ contextValue }>
-      { children }
+    <FormContext.Provider value={contextValue}>
+      {children}
     </FormContext.Provider>
-  )
+  );
 }
 
-export { FormContext }
-export default FormProvider
+export { FormContext };
+export default FormProvider;
