@@ -1,0 +1,25 @@
+.currentWeatherData {
+  position: relative;
+  top: -2px;
+  box-shadow: 0 10px 10px rgb(177, 170, 170);;
+}
+
+.text-pico-danger {
+  color: rgb(229, 57, 53);
+}
+
+form i.passwordToggle {
+  margin-left: -53px;
+  cursor: pointer;
+}
+
+form i.passwordToggle img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+
+form input {
+  background-image: unset !important;
+}
