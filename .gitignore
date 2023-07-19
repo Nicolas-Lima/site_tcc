@@ -2,6 +2,7 @@ firebaseConnection.js
 /node_modules
 .vscode/
 /build
-/src/firebaseConnection.js
+/src/services/firebaseConnection.js
+/src/services/weatherApi.js
 # Local Netlify folder
 .netlify

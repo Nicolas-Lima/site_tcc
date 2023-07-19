@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FormContext } from "../../contexts/formContext";
 
-import { auth } from "../../firebaseConnection";
+import { auth } from "../../services/firebaseConnection";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   validateEmailWithMessage,
