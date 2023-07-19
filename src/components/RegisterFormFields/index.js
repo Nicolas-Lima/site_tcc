@@ -2,16 +2,13 @@ import { useContext } from "react";
 import { FormContext } from "../../contexts/formContext";
 import PasswordToggle from "../PasswordToggle";
 
-function RegisterFormFields() {
+function RegisterFormFields(props) {
+  const { email, setEmail, password, setPassword } = props;
   const {
-    email,
-    setEmail,
     emailInputStarted,
     setEmailInputStarted,
     emailError,
     formSubmitted,
-    password,
-    setPassword,
     passwordInputStarted,
     setPasswordInputStarted,
     showingPassword,
@@ -71,10 +68,13 @@ function RegisterFormFields() {
               : ""
           }
         />
-        <PasswordToggle />
+        {password.length > 0 && <PasswordToggle />}
       </div>
-      <div className={`mt-1 mb-2 ${passwordError ? "d-initial" : "d-none"}`}>
-        <span className="password-error text-pico-danger">{passwordError}</span>
+      <div
+        className={`mt-1 mb-2 ${passwordError ? "d-initial" : "d-none"}`}>
+        <span className="password-error text-pico-danger">
+          {passwordError}
+        </span>
       </div>
     </div>
   );

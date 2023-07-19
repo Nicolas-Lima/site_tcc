@@ -9,8 +9,9 @@ import { getAuthErrorMessage } from "../../utils/validationUtils";
 
 function LoginForm() {
   const [credentialsError, setCredentialsError] = useState("");
-  const { email, setEmail, password, setPassword, showingPassword } =
-    useContext(FormContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const {showingPassword, setShowingPassword} = useContext(FormContext);
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function LoginForm() {
     await signInWithEmailAndPassword(auth, email, password)
       .then(value => {
         console.log(value.user);
-        //navigate("/")
+        navigate("/");
       })
       .catch(error => {
         const credentialsError = getAuthErrorMessage(error.code);
@@ -61,7 +62,7 @@ function LoginForm() {
             onChange={e => setPassword(e.target.value)}
             required
           />
-          <PasswordToggle />
+          {password.length > 0 && <PasswordToggle />}
         </div>
       </div>
 

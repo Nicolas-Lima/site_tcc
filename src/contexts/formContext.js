@@ -3,8 +3,6 @@ import { useState, createContext } from "react";
 const FormContext = createContext({});
 
 function FormProvider({ children }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -13,10 +11,6 @@ function FormProvider({ children }) {
   const [showingPassword, setShowingPassword] = useState(false);
 
   const contextValue = {
-    email,
-    setEmail,
-    password,
-    setPassword,
     emailError,
     setEmailError,
     passwordError,

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FormContext } from "../../contexts/formContext";
 
@@ -15,12 +15,13 @@ import RegisterFormFields from "../../components/RegisterFormFields";
 function RegisterForm() {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const {
-    email,
     setEmailError,
     emailInputStarted,
     setFormSubmitted,
-    password,
     setPasswordError,
     passwordInputStarted,
   } = useContext(FormContext);
@@ -96,7 +97,12 @@ function RegisterForm() {
               className="form-register mb-0"
               onSubmit={handleSubmit}
               noValidate>
-              <RegisterFormFields />
+              <RegisterFormFields
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+              />
               <button type="submit mt-0">Registrar</button>
             </form>
             <div className="mb-2 mt-2-3rem">

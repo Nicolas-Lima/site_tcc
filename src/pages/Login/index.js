@@ -11,7 +11,7 @@ function Login() {
               <strong className="me-3">Logar</strong>
             </header>
             <LoginForm />
-            <div className="mb-2" style={{ marginTop: "2.3rem" }}>
+            <div className="mb-2 mt-2-3rem">
               <span style={{ marginRight: "8px" }}>
                 Não possui uma conta?
               </span>
