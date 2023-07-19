@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { db, auth } from "../../firebaseConnection";
+import { auth } from "../../firebaseConnection";
 import { FormContext } from "../../contexts/formContext";
 
 import PasswordToggle from "../PasswordToggle";

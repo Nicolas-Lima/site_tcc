@@ -1,5 +1,4 @@
 function hasValidDomain(email) {
-  // Regular expression pattern for matching email address with domain
   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   return emailPattern.test(email);
 }

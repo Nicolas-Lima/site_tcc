@@ -8,6 +8,10 @@
   color: rgb(229, 57, 53);
 }
 
+.mt-2-3rem {
+  margin-top: 2.3rem;
+}
+
 form i.passwordToggle {
   margin-left: -53px;
   cursor: pointer;
