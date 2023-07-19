@@ -2,5 +2,6 @@ firebaseConnection.js
 /node_modules
 .vscode/
 /build
+/src/firebaseConnection.js
 # Local Netlify folder
 .netlify
