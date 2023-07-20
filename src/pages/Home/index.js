@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/authContext";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const getWeatherData = async () => {
     const weatherData = await fetchWeatherData();
@@ -77,7 +77,7 @@ function Home() {
               <article className="shadow-lg">
                 <header className="text-center mb-5 d-flex justify-content-center">
                   <span className="me-3">Clima atual</span>
-                  <p>{JSON.stringify(user)}</p>
+                  <button onClick={logout} className="p-0">Sair</button>
                 </header>
                 <span className="d-block text-dark">
                   Temperatura: {weatherData.main.temp}

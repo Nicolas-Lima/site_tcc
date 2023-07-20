@@ -8,6 +8,7 @@ import {
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
 const AuthContext = createContext({});
@@ -68,6 +69,13 @@ function AuthProvider({ children }) {
     return returnObject;
   }
 
+  async function logout() {
+    await signOut(auth).then(() => {
+      localStorage.removeItem("@userData");
+      setUser(null);
+    });
+  }
+
   function saveUserData(email, uid) {
     const userData = {
       email,
@@ -81,6 +89,7 @@ function AuthProvider({ children }) {
     user,
     signIn,
     signUp,
+    logout,
     loading,
   };
 
