@@ -1,20 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FormContext } from "../../contexts/formContext";
+import { AuthContext } from "../../contexts/authContext";
 
-import { auth } from "../../services/firebaseConnection";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   validateEmailWithMessage,
   validatePasswordWithMessage,
-  getCreateAccountErrorMessage,
 } from "../../utils/validationUtils";
 
 import RegisterFormFields from "../../components/RegisterFormFields";
 
 function RegisterForm() {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,6 +21,10 @@ function RegisterForm() {
     setPasswordError,
     passwordInputStarted,
   } = useContext(FormContext);
+
+  const {
+    signUp
+  } = useContext(AuthContext);
 
   useEffect(() => {
     if (emailInputStarted) {
@@ -61,27 +61,11 @@ function RegisterForm() {
 
     if (!isEmailValid || !isPasswordValid) {
       return;
-    } else {
-      setEmailError("");
-      setPasswordError("");
     }
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then(value => {
-        const userDetails = {
-          email: value.user.email,
-          uid: value.user.uid,
-        };
-        localStorage.setItem("@userDetails", JSON.stringify(userDetails));
-        navigate("/");
-
-        return;
-      })
-      .catch(error => {
-        const errorMessage = getCreateAccountErrorMessage(error.code);
-        setEmailError(errorMessage.email);
-        setPasswordError(errorMessage.password);
-      });
+    const { emailError, passwordError } = await signUp(email, password);
+    setEmailError(emailError);
+    setPasswordError(passwordError);
   };
 
   return (

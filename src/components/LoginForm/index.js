@@ -1,32 +1,23 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebaseConnection";
 import { FormContext } from "../../contexts/formContext";
-
+import { AuthContext } from "../../contexts/authContext";
 import PasswordToggle from "../PasswordToggle";
-import { getAuthErrorMessage } from "../../utils/validationUtils";
 
 function LoginForm() {
   const [credentialsError, setCredentialsError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {showingPassword, setShowingPassword} = useContext(FormContext);
+  const { showingPassword } = useContext(FormContext);
 
-  const navigate = useNavigate();
+  const { signIn } = useContext(AuthContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await signInWithEmailAndPassword(auth, email, password)
-      .then(value => {
-        console.log(value.user);
-        navigate("/");
-      })
-      .catch(error => {
-        const credentialsError = getAuthErrorMessage(error.code);
-        setCredentialsError(credentialsError);
-      });
+    const { credentialsError } = await signIn(email, password);
+    if(credentialsError) {
+      setCredentialsError(credentialsError);
+    }
   };
 
   return (
