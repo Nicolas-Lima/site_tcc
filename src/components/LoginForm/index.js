@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { FormContext } from "../../contexts/formContext";
 import { AuthContext } from "../../contexts/authContext";
 import PasswordToggle from "../PasswordToggle";
@@ -8,14 +9,22 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { showingPassword } = useContext(FormContext);
+  const { userSigned, signIn } = useContext(AuthContext);
 
-  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userSigned) {
+      
+      navigate("/");
+    }
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     const { credentialsError } = await signIn(email, password);
-    if(credentialsError) {
+    if (credentialsError) {
       setCredentialsError(credentialsError);
     }
   };

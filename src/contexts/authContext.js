@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebaseConnection";
 import {
@@ -13,9 +13,18 @@ import {
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState({})
-  
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const userData = localStorage.getItem("@userData");
+    if (userData) {
+      setUser(JSON.parse(userData));
+      setLoading(false);
+    }
+  }, []);
 
   async function signIn(email, password) {
     const returnObject = {
@@ -23,7 +32,12 @@ function AuthProvider({ children }) {
     };
     await signInWithEmailAndPassword(auth, email, password)
       .then(value => {
-        console.log(value.user);
+        const uid = value.user.uid;
+        saveUserData(uid, email);
+        setUser({
+          email,
+          uid,
+        });
         navigate("/");
       })
       .catch(error => {
@@ -41,11 +55,8 @@ function AuthProvider({ children }) {
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(value => {
-        const userData = {
-          email: value.user.email,
-          uid: value.user.uid,
-        };
-        localStorage.setItem("@userData", JSON.stringify(userData));
+        const { email, uid } = value.user;
+        saveUserData(email, uid);
         navigate("/");
       })
       .catch(error => {
@@ -53,13 +64,24 @@ function AuthProvider({ children }) {
         returnObject.emailError = errorMessage.email;
         returnObject.passwordError = errorMessage.password;
       });
-      
-      return returnObject
+
+    return returnObject;
+  }
+
+  function saveUserData(email, uid) {
+    const userData = {
+      email,
+      uid,
+    };
+    localStorage.setItem("@userData", JSON.stringify(userData));
   }
 
   const contextValue = {
+    userSigned: !!user,
+    user,
     signIn,
-    signUp, 
+    signUp,
+    loading,
   };
 
   return (

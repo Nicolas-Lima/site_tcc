@@ -22,9 +22,15 @@ function RegisterForm() {
     passwordInputStarted,
   } = useContext(FormContext);
 
-  const {
-    signUp
-  } = useContext(AuthContext);
+  const { userSigned, signUp } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userSigned) {
+      navigate("/")
+    }
+  }, [userSigned])
 
   useEffect(() => {
     if (emailInputStarted) {
