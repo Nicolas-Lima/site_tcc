@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebaseConnection";
 import {
@@ -23,8 +24,8 @@ function AuthProvider({ children }) {
     const userData = localStorage.getItem("@userData");
     if (userData) {
       setUser(JSON.parse(userData));
-      setLoading(false);
     }
+    setLoading(false);
   }, []);
 
   async function signIn(email, password) {
@@ -95,7 +96,7 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={contextValue}>
-      {children}
+      {loading ? <Loading /> : children}
     </AuthContext.Provider>
   );
 }

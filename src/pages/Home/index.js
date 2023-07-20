@@ -1,11 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import DrawerAndNav from "../../components/DrawerAndNav";
+import Loading from "../../components/Loading";
 import { fetchWeatherData } from "../../services/weatherApi";
 import { AuthContext } from "../../contexts/authContext";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
 
   const getWeatherData = async () => {
     const weatherData = await fetchWeatherData();
@@ -77,7 +78,6 @@ function Home() {
               <article className="shadow-lg">
                 <header className="text-center mb-5 d-flex justify-content-center">
                   <span className="me-3">Clima atual</span>
-                  <button onClick={logout} className="p-0">Sair</button>
                 </header>
                 <span className="d-block text-dark">
                   Temperatura: {weatherData.main.temp}

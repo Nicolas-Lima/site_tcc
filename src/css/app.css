@@ -8,8 +8,16 @@
   color: rgb(229, 57, 53);
 }
 
+.text-cyan {
+  color: #00acc1;
+}
+
 .mt-2-3rem {
   margin-top: 2.3rem;
+}
+
+.pt-4rem {
+  padding-top: 4rem !important;
 }
 
 form i.passwordToggle {
