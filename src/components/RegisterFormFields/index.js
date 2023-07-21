@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FormContext } from "../../contexts/formContext";
 import PasswordToggle from "../PasswordToggle";
 
@@ -14,6 +14,10 @@ function RegisterFormFields(props) {
     showingPassword,
     passwordError,
   } = useContext(FormContext);
+
+  useEffect(() => {
+    setPasswordInputStarted(false)
+  }, [])
 
   return (
     <div className="d-flex flex-column mb-4">
