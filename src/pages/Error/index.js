@@ -7,7 +7,7 @@ function Error() {
         Essa página não existe!
       </h1>
       <Link to="/" className="fs-5">
-        <span>Voltar para a página inicial</span>
+        Voltar para a página inicial
       </Link>
     </div>
   );
