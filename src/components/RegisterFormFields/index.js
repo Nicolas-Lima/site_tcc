@@ -15,10 +15,6 @@ function RegisterFormFields(props) {
     passwordError,
   } = useContext(FormContext);
 
-  useEffect(() => {
-    setPasswordInputStarted(false)
-  }, [])
-
   return (
     <div className="d-flex flex-column mb-4">
       <label className="mb-2" htmlFor="email">
