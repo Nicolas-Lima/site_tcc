@@ -1,0 +1,8 @@
+.openDrawer {
+  background-color: #efefef !important;
+}
+
+.openDrawer:hover {
+  transform: scale(1.04);
+  background-color: #dcdcdc !important;
+}

@@ -1,15 +1,14 @@
 import * as React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
+
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
@@ -18,7 +17,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Nav from "../Nav"
+import LogoutIcon from "@mui/icons-material/Logout";
+import Nav from "../Nav";
 
 const drawerWidth = 240;
 
@@ -34,6 +34,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function DrawerAndNav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const { logout } = useContext(AuthContext)
+
+  const handleLogout = async() => {
+    await logout()
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -45,7 +50,7 @@ export default function DrawerAndNav() {
 
   return (
     <div>
-      <Nav handleDrawerOpen={ handleDrawerOpen } />
+      <Nav handleDrawerOpen={handleDrawerOpen} />
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Drawer
@@ -61,7 +66,9 @@ export default function DrawerAndNav() {
           anchor="left"
           open={open}>
           <DrawerHeader>
-            <IconButton className="w-auto shadow-none" onClick={handleDrawerClose}>
+            <IconButton
+              className="w-auto shadow-none"
+              onClick={handleDrawerClose}>
               {theme.direction === "ltr" ? (
                 <ChevronLeftIcon />
               ) : (
@@ -82,12 +89,12 @@ export default function DrawerAndNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem key={"Inbox"} disablePadding>
+            <ListItem key={"logout"} disablePadding onClick={handleLogout}>
               <ListItemButton className="shadow-none">
                 <ListItemIcon>
-                  <InboxIcon />
+                  <LogoutIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Inbox"} />
+                <ListItemText primary={"Sair"} />
               </ListItemButton>
             </ListItem>
           </List>

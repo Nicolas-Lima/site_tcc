@@ -1,10 +1,12 @@
+import "./nav.css"
+
 function Nav(props) {
   return (
     <nav className="px-4 mt-2 d-flex">
       <ul>
         <li>
           <button
-            className="m-0 p-0 bg-transparent link-dark border-0 shadow-none"
+            className="openDrawer m-0 ms-2 p-1 link-dark border-0 shadow-none"
             onClick={props.handleDrawerOpen}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
