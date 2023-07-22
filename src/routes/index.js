@@ -4,11 +4,19 @@ import Error from "../pages/Error";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import FormProvider from "../contexts/form";
+import Private from "./Private";
 
 function RoutesApp() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <Private>
+            <Home />
+          </Private>
+        }
+      />
       <Route
         path="/register"
         element={
