@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  getCurrentDate,
-  getCurrentTime,
-} from "../../utils/dateUtils";
+import { getCurrentDate, getCurrentTime } from "../../utils/dateUtils";
 
 function NewIrrigation() {
   const [scheduleName, setScheduleName] = useState("");
@@ -10,8 +7,10 @@ function NewIrrigation() {
   const [scheduleTime, setScheduleTime] = useState("");
 
   useEffect(() => {
-    setScheduleTime(getCurrentDate());
-  }, [])
+    const { hours, minutes, dateString } = getCurrentDate()
+    setScheduleDate(dateString || "");
+    setScheduleTime(`${hours + 2}:${minutes}`);
+  }, []);
 
   return (
     <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
@@ -41,6 +40,7 @@ function NewIrrigation() {
               type="date"
               id="scheduleDate"
               name="scheduleDate"
+              pattern="\d{2}-\d{2}-\d{4}"
               placeholder="Data do agendamento"
               value={scheduleDate}
               onChange={e => setScheduleDate(e.target.value)}
