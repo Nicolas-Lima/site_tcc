@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { FormContext } from "../../contexts/formContext";
+import { FormContext } from "../../contexts/form";
 import PasswordToggle from "../PasswordToggle";
 
 function RegisterFormFields(props) {

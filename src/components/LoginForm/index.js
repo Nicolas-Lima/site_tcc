@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormContext } from "../../contexts/formContext";
-import { AuthContext } from "../../contexts/authContext";
+import { FormContext } from "../../contexts/form";
+import { AuthContext } from "../../contexts/auth";
 import PasswordToggle from "../PasswordToggle";
 
 function LoginForm() {

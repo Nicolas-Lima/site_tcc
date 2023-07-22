@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import DrawerAndNav from "../../components/DrawerAndNav";
 import Loading from "../../components/Loading";
 import { fetchWeatherData } from "../../services/weatherApi";
-import { AuthContext } from "../../contexts/authContext";
+import { AuthContext } from "../../contexts/auth";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
