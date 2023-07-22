@@ -79,9 +79,9 @@ export default function DrawerAndNav() {
 
           <Divider />
 
-          <List className="mt-2 ms-2">
+          <List className="mt-3 ms-2">
             <ListItem key={"scheduleIrrigation"} disablePadding>
-              <Link to="/schedule" className="custom-link">
+              <Link to="/schedule" className="custom-link w-100">
                 <ListItemButton className="shadow-none">
                   <ListItemIcon>
                     <ShowerIcon />
