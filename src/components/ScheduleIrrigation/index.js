@@ -15,7 +15,7 @@ function NewIrrigation() {
   async function handleSubmit(event) {
     event.preventDefault();
   }
-  
+
   return (
     <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
       <article className="shadow-lg pt-0">
@@ -59,7 +59,6 @@ function NewIrrigation() {
               placeholder="Hora do agendamento"
               value={scheduleTime}
               onChange={e => setScheduleTime(e.target.value)}
-              required
             />
           </div>
 
