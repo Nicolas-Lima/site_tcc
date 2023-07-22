@@ -18,6 +18,7 @@ function FormProvider({ children }) {
     setPasswordError("");
     setEmailInputStarted(false);
     setPasswordInputStarted(false);
+    setFormSubmitted(false);
   }, [location.pathname]);
 
   const contextValue = {
