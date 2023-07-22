@@ -73,6 +73,10 @@ function validatePasswordWithMessage(password) {
 
   const validationConditions = [
     {
+      condition: !password,
+      errorMessage: "Sua senha está vazia!",
+    },
+    {
       condition: !hasUppercase(password),
       errorMessage:
         "Sua senha precisa ter pelo menos uma letra maiúscula!",

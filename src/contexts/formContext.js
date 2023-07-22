@@ -1,4 +1,5 @@
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
+import { useLocation } from "react-router-dom";
 
 const FormContext = createContext({});
 
@@ -9,6 +10,15 @@ function FormProvider({ children }) {
   const [emailInputStarted, setEmailInputStarted] = useState(false);
   const [passwordInputStarted, setPasswordInputStarted] = useState(false);
   const [showingPassword, setShowingPassword] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setEmailError("");
+    setPasswordError("");
+    setEmailInputStarted(false);
+    setPasswordInputStarted(false);
+  }, [location.pathname]);
 
   const contextValue = {
     emailError,
