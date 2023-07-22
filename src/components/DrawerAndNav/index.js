@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/auth";
 
 import { styled, useTheme } from "@mui/material/styles";
@@ -16,7 +17,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ShowerIcon from "@mui/icons-material/Shower";
-import MailIcon from "@mui/icons-material/Mail";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Nav from "../Nav";
 
@@ -34,11 +34,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function DrawerAndNav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext);
 
-  const handleLogout = async() => {
-    await logout()
-  }
+  const handleLogout = async () => {
+    await logout();
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -80,13 +80,15 @@ export default function DrawerAndNav() {
           <Divider />
 
           <List className="mt-2 ms-2">
-            <ListItem key={"Agendar irrigação"} disablePadding>
-              <ListItemButton className="shadow-none">
-                <ListItemIcon>
-                  <ShowerIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Agendar irrigação"} />
-              </ListItemButton>
+            <ListItem key={"scheduleIrrigation"} disablePadding>
+              <Link to="/schedule" className="custom-link">
+                <ListItemButton className="shadow-none">
+                  <ListItemIcon>
+                    <ShowerIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={"Agendar irrigação"} />
+                </ListItemButton>
+              </Link>
             </ListItem>
 
             <ListItem key={"logout"} disablePadding onClick={handleLogout}>

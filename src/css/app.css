@@ -20,6 +20,11 @@
   padding-top: 4rem !important;
 }
 
+.custom-link {
+  text-decoration: unset;
+  color: rgb(65, 84, 98);
+}
+
 form i.passwordToggle {
   margin-left: -53px;
   cursor: pointer;

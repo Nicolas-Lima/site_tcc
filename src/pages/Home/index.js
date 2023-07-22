@@ -1,12 +1,18 @@
 import { useEffect, useState, useContext } from "react";
+
 import DrawerAndNav from "../../components/DrawerAndNav";
-import NewIrrigation from "../../components/ScheduleIrrigation";
+import ScheduleIrrigation from "../../components/ScheduleIrrigation";
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+
 import { fetchWeatherData } from "../../services/weatherApi";
 import { AuthContext } from "../../contexts/auth";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
-  const { user, logout } = useContext(AuthContext);
+  const [aa, setAa] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   const getWeatherData = async () => {
     const weatherData = await fetchWeatherData();
@@ -18,15 +24,20 @@ function Home() {
     getWeatherData();
   }, []);
 
+  if (aa == "NewIrrigation") {
+    return <ScheduleIrrigation />;
+  }
+
   return (
     <div>
       <DrawerAndNav />
-      <div className="container py-0 mt-5 mt-md-3 mt-lg-4">
-        <div className="row justify-content-center gx-sm-5 mb-4">
+      <Container>
+        <Row className="justify-content-center gx-sm-5">
           {/* O U T R O */}
 
+          {/* <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4"> */}
           {weatherData.main && (
-            <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4">
+            <div>
               <article className="shadow-lg">
                 <header className="text-center mb-5 d-flex justify-content-center">
                   <span className="me-3">Clima atual</span>
@@ -42,8 +53,8 @@ function Home() {
           )}
 
           {/* O U T R O */}
-        </div>
-      </div>
+        </Row>
+      </Container>
     </div>
   );
 }
