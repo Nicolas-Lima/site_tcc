@@ -1,16 +1,16 @@
 import "./weatherForecast.css";
 
 function WeatherForecast({ weatherData }) {
-  const weatherIcon = weatherData?.weather[0]?.icon;
+  const weatherIconId = weatherData?.weather[0]?.icon;
 
   return (
     <div className="weatherForecast-container">
       <article className="shadow-lg">
         <header className="text-center mb-5 d-flex justify-content-center align-items-center">
           <strong className="me-3">Previsão do clima</strong>
-          {weatherIcon && (
+          {weatherIconId && (
             <img
-              src={`http://openweathermap.org/img/wn/${weatherIcon}.png`}
+              src={`http://openweathermap.org/img/wn/${weatherIconId}.png`}
               className="weatherIcon rounded shadow-sm"
               alt="Current weather icon"
               width={50}

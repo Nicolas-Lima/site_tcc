@@ -1,4 +1,11 @@
+import { useState, useEffect } from "react";
+import {getCurrentDate} from "../../utils/validationUtils"
+
 function NewIrrigation() {
+  const [scheduleName, setScheduleName] = useState("");
+  const [scheduleDate, setScheduleDate] = useState("");
+  const [scheduleTime, setScheduleTime] = useState("");
+
   return (
     <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
       <article className="shadow-lg pt-0">
@@ -7,36 +14,42 @@ function NewIrrigation() {
         </header>
         <form className="mb-0">
           <div className="d-flex flex-column mb-4">
-            <label className="mb-2" htmlFor="firstname">
+            <label className="mb-2" htmlFor="scheduleName">
               Nome
             </label>
             <input
               type="text"
-              id="firstname"
-              name="firstname"
+              id="scheduleName"
+              name="scheduleName"
               placeholder="Nome do agendamento"
+              value={scheduleName}
+              onChange={e => setScheduleName(e.target.value)}
               required
             />
 
-            <label className="mb-2" htmlFor="lastname">
+            <label className="mb-2" htmlFor="scheduleDate">
               Data
             </label>
             <input
               type="date"
-              id="lastname"
-              name="lastname"
-              placeholder="Last name"
+              id="scheduleDate"
+              name="scheduleDate"
+              placeholder="Data do agendamento"
+              value={scheduleDate}
+              onChange={e => setScheduleDate(e.target.value)}
               required
             />
 
-            <label className="mb-2" htmlFor="lastname">
+            <label className="mb-2" htmlFor="scheduleTime">
               Hora
             </label>
             <input
               type="time"
-              id="lastname"
-              name="lastname"
-              placeholder="Last name"
+              id="scheduleTime"
+              name="scheduleTime"
+              placeholder="Hora do agendamento"
+              value={scheduleTime}
+              onChange={e => setScheduleTime(e.target.value)}
               required
             />
           </div>
@@ -48,4 +61,4 @@ function NewIrrigation() {
   );
 }
 
-export default NewIrrigation
+export default NewIrrigation;
