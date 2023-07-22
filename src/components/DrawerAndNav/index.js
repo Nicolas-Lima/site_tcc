@@ -15,12 +15,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+import ShowerIcon from "@mui/icons-material/Shower";
 import MailIcon from "@mui/icons-material/Mail";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Nav from "../Nav";
 
-const drawerWidth = 240;
+const drawerWidth = 285;
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -83,7 +83,7 @@ export default function DrawerAndNav() {
             <ListItem key={"Agendar irrigação"} disablePadding>
               <ListItemButton className="shadow-none">
                 <ListItemIcon>
-                  <MailIcon />
+                  <ShowerIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Agendar irrigação"} />
               </ListItemButton>
