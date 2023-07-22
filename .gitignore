@@ -1,4 +1,5 @@
 firebaseConnection.js
+weatherApi.js
 /node_modules
 .vscode/
 /build
