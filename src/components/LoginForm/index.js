@@ -32,6 +32,7 @@ function LoginForm() {
     <form
       method="post"
       className="mb-0"
+      id="login"
       noValidate
       onSubmit={handleSubmit}>
       <div className="d-flex flex-column mb-2">

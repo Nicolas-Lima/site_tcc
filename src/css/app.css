@@ -32,6 +32,6 @@ form i.passwordToggle img {
   cursor: pointer;
 }
 
-form input {
+form#register input, form#login input {
   background-image: unset !important;
 }

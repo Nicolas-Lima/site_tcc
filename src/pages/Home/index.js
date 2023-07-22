@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import DrawerAndNav from "../../components/DrawerAndNav";
-import Loading from "../../components/Loading";
+import NewIrrigation from "../../components/NewIrrigation";
 import { fetchWeatherData } from "../../services/weatherApi";
 import { AuthContext } from "../../contexts/auth";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
-  const { user, logout, loading } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const getWeatherData = async () => {
     const weatherData = await fetchWeatherData();
@@ -25,51 +25,7 @@ function Home() {
         <div className="row justify-content-center gx-sm-5 mb-4">
           {/* O U T R O */}
 
-          <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
-            <article className="shadow-lg pt-0">
-              <header className="text-center mb-4 d-flex justify-content-center">
-                <strong className="me-3">Agendar nova irrigação</strong>
-              </header>
-              <form className="mb-0">
-                <div className="d-flex flex-column mb-4">
-                  <label className="mb-2" htmlFor="firstname">
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    id="firstname"
-                    name="firstname"
-                    placeholder="Nome do agendamento"
-                    required
-                  />
-
-                  <label className="mb-2" htmlFor="lastname">
-                    Data
-                  </label>
-                  <input
-                    type="date"
-                    id="lastname"
-                    name="lastname"
-                    placeholder="Last name"
-                    required
-                  />
-
-                  <label className="mb-2" htmlFor="lastname">
-                    Hora
-                  </label>
-                  <input
-                    type="time"
-                    id="lastname"
-                    name="lastname"
-                    placeholder="Last name"
-                    required
-                  />
-                </div>
-
-                <button type="submit">Agendar</button>
-              </form>
-            </article>
-          </div>
+          <NewIrrigation />
 
           {/* O U T R O */}
 

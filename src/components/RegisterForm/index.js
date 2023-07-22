@@ -86,6 +86,7 @@ function RegisterForm() {
               method="post"
               className="form-register mb-0"
               onSubmit={handleSubmit}
+              id="register"
               noValidate>
               <RegisterFormFields
                 email={email}
