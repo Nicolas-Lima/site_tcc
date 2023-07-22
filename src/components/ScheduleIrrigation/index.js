@@ -7,18 +7,22 @@ function NewIrrigation() {
   const [scheduleTime, setScheduleTime] = useState("");
 
   useEffect(() => {
-    const { hours, minutes, dateString } = getCurrentDate()
+    const { hours, minutes, dateString } = getCurrentDate();
     setScheduleDate(dateString || "");
     setScheduleTime(`${hours + 2}:${minutes}`);
   }, []);
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+  }
+  
   return (
     <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
       <article className="shadow-lg pt-0">
         <header className="text-center mb-4 d-flex justify-content-center">
           <strong className="me-3">Agendar nova irrigação</strong>
         </header>
-        <form className="mb-0">
+        <form className="mb-0" noValidate="true" onSubmit={handleSubmit}>
           <div className="d-flex flex-column mb-4">
             <label className="mb-2" htmlFor="scheduleName">
               Nome
@@ -30,7 +34,6 @@ function NewIrrigation() {
               placeholder="Nome do agendamento"
               value={scheduleName}
               onChange={e => setScheduleName(e.target.value)}
-              required
             />
 
             <label className="mb-2" htmlFor="scheduleDate">
@@ -44,7 +47,6 @@ function NewIrrigation() {
               placeholder="Data do agendamento"
               value={scheduleDate}
               onChange={e => setScheduleDate(e.target.value)}
-              required
             />
 
             <label className="mb-2" htmlFor="scheduleTime">
