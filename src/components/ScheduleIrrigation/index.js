@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import {getCurrentDate} from "../../utils/validationUtils"
+import {
+  getCurrentDate,
+  getCurrentTime,
+} from "../../utils/dateUtils";
 
 function NewIrrigation() {
   const [scheduleName, setScheduleName] = useState("");
   const [scheduleDate, setScheduleDate] = useState("");
   const [scheduleTime, setScheduleTime] = useState("");
+
+  useEffect(() => {
+    setScheduleTime(getCurrentDate());
+  }, [])
 
   return (
     <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
