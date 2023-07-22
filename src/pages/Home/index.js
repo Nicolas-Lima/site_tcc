@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import DrawerAndNav from "../../components/DrawerAndNav";
-import NewIrrigation from "../../components/NewIrrigation";
+import NewIrrigation from "../../components/ScheduleIrrigation";
 import { fetchWeatherData } from "../../services/weatherApi";
 import { AuthContext } from "../../contexts/auth";
 
@@ -24,7 +24,7 @@ function Home() {
       <div className="container py-0 mt-5 mt-md-3 mt-lg-4">
         <div className="row justify-content-center gx-sm-5 mb-4">
           {/* O U T R O */}
-          
+
           {weatherData.main && (
             <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4">
               <article className="shadow-lg">

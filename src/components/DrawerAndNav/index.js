@@ -80,12 +80,12 @@ export default function DrawerAndNav() {
           <Divider />
 
           <List className="mt-2 ms-2">
-            <ListItem key={"Email"} disablePadding>
+            <ListItem key={"Agendar irrigação"} disablePadding>
               <ListItemButton className="shadow-none">
                 <ListItemIcon>
                   <MailIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Email"} />
+                <ListItemText primary={"Agendar irrigação"} />
               </ListItemButton>
             </ListItem>
 
