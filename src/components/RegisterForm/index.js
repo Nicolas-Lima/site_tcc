@@ -22,15 +22,16 @@ function RegisterForm() {
     passwordInputStarted,
   } = useContext(FormContext);
 
-  const { userSigned, signUp } = useContext(AuthContext);
+  const { userSigned, signUp, registering, setRegistering } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (userSigned) {
-      navigate("/")
+      navigate("/");
     }
-  }, [userSigned])
+  }, [userSigned]);
 
   useEffect(() => {
     if (emailInputStarted) {
@@ -43,6 +44,10 @@ function RegisterForm() {
       validatePassword();
     }
   }, [password]);
+
+  useEffect(() => {
+    console.log(registering);
+  }, [registering]);
 
   const validateEmail = () => {
     const { isValid, errorMessage } = validateEmailWithMessage(email);
@@ -69,9 +74,11 @@ function RegisterForm() {
       return;
     }
 
+    setRegistering(true);
     const { emailError, passwordError } = await signUp(email, password);
     setEmailError(emailError);
     setPasswordError(passwordError);
+    setRegistering(false);
   };
 
   return (
@@ -94,7 +101,16 @@ function RegisterForm() {
                 password={password}
                 setPassword={setPassword}
               />
-              <button type="submit mt-0">Registrar</button>
+              {registering ? (
+                <button
+                  type="submit mt-0"
+                  aria-busy="true"
+                  className="secondary">
+                  Registrando
+                </button>
+              ) : (
+                <button type="submit mt-0">Registrar</button>
+              )}
             </form>
             <div className="mb-2 mt-2-3rem">
               <span style={{ marginRight: "8px" }}>

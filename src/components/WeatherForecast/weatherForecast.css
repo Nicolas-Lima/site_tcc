@@ -1,3 +1,7 @@
+.weatherForecast-container {
+  max-width: 725px !important;
+}
+
 .weatherIcon {
   background-color: rgba(204, 204, 204, 0.9) !important;
 }

@@ -9,7 +9,8 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { showingPassword } = useContext(FormContext);
-  const { userSigned, signIn } = useContext(AuthContext);
+  const { userSigned, signIn, loggingIn, setLoggingIn } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -22,10 +23,12 @@ function LoginForm() {
   const handleSubmit = async e => {
     e.preventDefault();
 
+    setLoggingIn(true);
     const { credentialsError } = await signIn(email, password);
     if (credentialsError) {
       setCredentialsError(credentialsError);
     }
+    setLoggingIn(false);
   };
 
   return (
@@ -68,7 +71,13 @@ function LoginForm() {
 
       <div className="mt-1 mb-4 text-pico-danger">{credentialsError}</div>
 
-      <button type="submit">Logar</button>
+      {loggingIn ? (
+        <button type="submit mt-0" aria-busy="true" className="secondary">
+          Logando
+        </button>
+      ) : (
+        <button type="submit mt-0">Logar</button>
+      )}
     </form>
   );
 }

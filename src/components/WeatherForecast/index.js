@@ -4,7 +4,7 @@ function WeatherForecast({ weatherData }) {
   const weatherIcon = weatherData?.weather[0]?.icon;
 
   return (
-    <div>
+    <div className="weatherForecast-container">
       <article className="shadow-lg">
         <header className="text-center mb-5 d-flex justify-content-center align-items-center">
           <strong className="me-3">Previsão do clima</strong>

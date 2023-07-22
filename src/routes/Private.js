@@ -3,9 +3,9 @@ import { Navigate } from "react-router-dom"
 import { AuthContext } from "../contexts/auth"
 
 function Private({ children }) {
-  const { userSigned, loading } = useContext(AuthContext)
+  const { userSigned, pageLoading } = useContext(AuthContext)
 
-  if(!userSigned && !loading) {
+  if(!userSigned && !pageLoading) {
     return <Navigate to="/login" />;
   }
 

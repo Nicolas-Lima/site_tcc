@@ -16,7 +16,9 @@ const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(true);
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [registering, setRegistering] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,10 +27,12 @@ function AuthProvider({ children }) {
     if (userData) {
       setUser(JSON.parse(userData));
     }
-    setLoading(false);
+    setPageLoading(false);
   }, []);
 
   async function signIn(email, password) {
+    setLoggingIn(true);
+
     const returnObject = {
       credentialsError: "",
     };
@@ -46,6 +50,8 @@ function AuthProvider({ children }) {
         returnObject.credentialsError = getAuthErrorMessage(error.code);
       });
 
+    setLoggingIn(false);
+
     return returnObject;
   }
 
@@ -59,6 +65,10 @@ function AuthProvider({ children }) {
       .then(value => {
         const { email, uid } = value.user;
         saveUserData(email, uid);
+        setUser({
+          email,
+          uid,
+        });
         navigate("/");
       })
       .catch(error => {
@@ -91,12 +101,16 @@ function AuthProvider({ children }) {
     signIn,
     signUp,
     logout,
-    loading,
+    pageLoading,
+    loggingIn,
+    setLoggingIn,
+    registering,
+    setRegistering,
   };
 
   return (
     <AuthContext.Provider value={contextValue}>
-      {loading ? <Loading /> : children}
+      {pageLoading ? <Loading /> : children}
     </AuthContext.Provider>
   );
 }
