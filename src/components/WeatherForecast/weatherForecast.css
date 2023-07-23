@@ -10,25 +10,6 @@
   padding: 8px 5px;
 }
 
-.weatherForecast-container > div {
-  background-color: #f8f8f8;
-}
-
-.weatherForecast-container p {
-  display: inline !important;
-  font-size: 20px;
-}
-
 .weatherForecast-container div:not(:first-child) {
   margin-top: 20px;
-}
-
-.icon svg {
-  color: rgba(65, 84, 98);
-  width: 24px;
-  height: 24px;
-}
-
-.bg-gray {
-  background-color: #a5a5a5;
 }

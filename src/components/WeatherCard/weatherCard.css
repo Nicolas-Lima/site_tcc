@@ -1,0 +1,12 @@
+.weatherForecast-container > div {
+  background-color: #f8f8f8;
+}
+.weatherForecast-container p {
+  display: inline !important;
+  font-size: 20px;
+}
+.icon svg {
+  color: rgba(65, 84, 98);
+  width: 24px;
+  height: 24px;
+}
