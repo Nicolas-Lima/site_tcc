@@ -1,3 +1,9 @@
+import {
+  BsThermometerHigh,
+  BsThermometerHalf,
+  BsThermometerLow,
+} from "react-icons/bs";
+
 const hasUppercase = string => {
   for (let i = 0; i < string.length; i++) {
     const char = string[i];
@@ -35,6 +41,17 @@ function roundToNearestInteger(number) {
   return Math.floor(number);
 }
 
+function getTempIcon(temperature) {
+  if (temperature <= 10) {
+    return <BsThermometerLow />;
+  } else if (temperature >= 11 && temperature <= 25) {
+    return <BsThermometerHalf />;
+  } else if (temperature >= 26) {
+    return <BsThermometerHigh />;
+  }
+  return null;
+}
+
 export {
   hasUppercase,
   hasSpecialCharacter,
@@ -42,4 +59,5 @@ export {
   capitalizeFirstLetter,
   mpsToKmph,
   roundToNearestInteger,
+  getTempIcon,
 };
