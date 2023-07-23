@@ -31,9 +31,7 @@ function Home() {
           {/* O U T R O */}
 
           {/* <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4"> */}
-          {weatherData.main && (
-            <WeatherForecast weatherData={weatherData} />
-          )}
+          <WeatherForecast weatherData={weatherData} />
 
           {/* O U T R O */}
         </Row>
