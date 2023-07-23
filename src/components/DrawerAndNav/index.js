@@ -10,8 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import CloseIcon from "@mui/icons-material/Close";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -32,7 +31,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DrawerAndNav() {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const { logout } = useContext(AuthContext);
 
@@ -67,13 +65,9 @@ export default function DrawerAndNav() {
           open={open}>
           <DrawerHeader>
             <IconButton
-              className="w-auto shadow-none"
+              className="me-1 w-auto shadow-none"
               onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
+              <CloseIcon />
             </IconButton>
           </DrawerHeader>
 
