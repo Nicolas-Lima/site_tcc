@@ -1,4 +1,8 @@
-import { capitalizeFirstLetter } from "../../utils/generalUtils";
+import {
+  capitalizeFirstLetter,
+  mpsToKmph,
+  roundToNearestInteger,
+} from "../../utils/generalUtils";
 import {
   BsThermometerHigh,
   BsThermometerHalf,
@@ -28,19 +32,20 @@ function WeatherForecast({ weatherData }) {
   const weatherCondition = capitalizeFirstLetter(
     weatherData.weather[0].description
   );
-  const windSpeed = weatherData.wind.speed;
+  const windSpeed = roundToNearestInteger(mpsToKmph(weatherData.wind.speed));
 
   const weatherIconId = weatherData?.weather[0]?.icon;
   const tempIcon = getTempIcon(temperature);
   const thermalSensationIcon = getTempIcon(thermalSensation);
 
-  alert("CRIAR COMPONENTES E tirar coisas DUPLICADAS, como a IMG!");
+  console.log("weatherData.main.temp_min, weatherData.main.temp_max");
+  console.log("CRIAR COMPONENTES E tirar coisas DUPLICADAS, como a IMG!");
 
   return (
     <div className="weatherForecast-container">
       <article className="shadow-lg pb-5">
         <header className="text-center mb-5 d-flex justify-content-center align-items-center">
-          <strong className="me-3">Previsão do clima</strong>
+          <strong className="me-3">Previsão do tempo</strong>
           {weatherIconId && (
             <img
               src={`http://openweathermap.org/img/wn/${weatherIconId}.png`}
@@ -56,14 +61,16 @@ function WeatherForecast({ weatherData }) {
             <i className="icon">{tempIcon}</i>
             <p className="ms-3 text-dark">
               <span className="custom-color">Temperatura:</span>{" "}
-              {temperature}°
+              {temperature}
+              <span>°</span>
             </p>
           </div>
           <div className="d-block border border-light shadow-sm text-dark rounded">
             <i className="icon">{thermalSensationIcon}</i>
             <p className="ms-3 text-dark">
               <span className="custom-color">Sensação térmica:</span>{" "}
-              {thermalSensation}°
+              {thermalSensation}
+              <span>°</span>
             </p>
           </div>
           <div className="d-block border border-light shadow-sm text-dark rounded">
@@ -86,6 +93,7 @@ function WeatherForecast({ weatherData }) {
             <p className="ms-3 text-dark">
               <span className="custom-color">Velocidade do vento:</span>{" "}
               {windSpeed}
+              <span>{" "}km/h</span>
             </p>
           </div>
         </div>
