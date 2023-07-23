@@ -17,4 +17,13 @@ function hasNumber(string) {
   return /\d/.test(string);
 }
 
-export { hasUppercase, hasSpecialCharacter, hasNumber };
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export {
+  hasUppercase,
+  hasSpecialCharacter,
+  hasNumber,
+  capitalizeFirstLetter,
+};

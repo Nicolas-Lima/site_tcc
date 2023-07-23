@@ -10,20 +10,11 @@ import { AuthContext } from "../../contexts/auth";
 
 function Home() {
   const [weatherData, setWeatherData] = useState({});
-  const [aa, setAa] = useState("aa");
-
   const { user } = useContext(AuthContext);
 
   const getWeatherData = async () => {
     const weatherData = await fetchWeatherData();
     setWeatherData(weatherData);
-
-
-    console.log(
-      weatherData.wind.speed,
-      weatherData.weather[0].description,
-      weatherData.weather[0].icon
-    );
 
     return weatherData;
   };
