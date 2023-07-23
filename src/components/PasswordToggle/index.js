@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { FormContext } from "../../contexts/form";
 import eye from "../../assets/eye-fill.svg";
 import eyeSlash from "../../assets/eye-slash-fill.svg";
+import "./passwordToggle.css"
 
 function PasswordToggle() {
   const { showingPassword, setShowingPassword } = useContext(FormContext);
