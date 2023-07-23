@@ -1,15 +1,15 @@
 import { useContext, useEffect } from "react";
 import { FormContext } from "../../contexts/form";
-import eye from "../../assets/eye-fill.svg";
-import eyeSlash from "../../assets/eye-slash-fill.svg";
-import "./passwordToggle.css"
+import { BsEyeFill } from "react-icons/bs";
+import { BsEyeSlashFill } from "react-icons/bs";
+import "./passwordToggle.css";
 
 function PasswordToggle() {
   const { showingPassword, setShowingPassword } = useContext(FormContext);
 
   useEffect(() => {
     return setShowingPassword(false);
-  }, [])
+  }, []);
 
   return (
     <i
@@ -17,7 +17,7 @@ function PasswordToggle() {
       onClick={() => {
         setShowingPassword(prevState => !prevState);
       }}>
-      {showingPassword ? <img src={eyeSlash} /> : <img src={eye} />}
+      {showingPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
     </i>
   );
 }
