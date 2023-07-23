@@ -6,6 +6,10 @@
   color: #00acc1;
 }
 
+.bg-gray {
+  background-color: #a5a5a5;
+}
+
 .mt-2-3rem {
   margin-top: 2.3rem;
 }
